@@ -1,5 +1,5 @@
-import './App.less';
-import { Main } from './components/main/Main';
+import "./App.less";
+import { Main } from "./components/Main/Main";
 
 function App() {
   return (
