@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./Login.css";
@@ -68,7 +68,7 @@ export const Login = () => {
     <>
       <Layout>
         <Content
-          style={{ marginTop: "5%", marginBottom: "11.4%" }}
+          style={{ marginTop: "5%", marginBottom: "10%" }}
           className="login-content"
         >
           <Fade up>

@@ -10,6 +10,7 @@ export const Header = () => {
   const auth = useSelector((data) => authStateReducer(data));
   const dispatch = useDispatch();
   const history = useHistory();
+  // eslint-disable-next-line
   const [nav, setNav] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 

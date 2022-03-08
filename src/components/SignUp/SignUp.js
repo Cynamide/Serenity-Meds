@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;

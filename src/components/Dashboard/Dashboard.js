@@ -17,7 +17,9 @@ const { Title } = Typography;
 export const Dashboard = () => {
   const [programme, setProgramme] = useState([]);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line
   const auth = useSelector((data) => authStateReducer(data));
+  // eslint-disable-next-line
   const history = useHistory();
 
   // useEffect(() => {
