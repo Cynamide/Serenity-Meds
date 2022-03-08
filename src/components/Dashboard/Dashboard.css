@@ -1,0 +1,89 @@
+.title {
+  font-size: 30px !important;
+}
+.card-title {
+  font-size: 18px;
+}
+
+.plans-button {
+  width: 100%;
+  margin-top: 5%;
+  min-height: 30px;
+  font-weight: 600;
+  border: 1px solid black !important;
+  border-radius: 8px !important;
+}
+
+.plans-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.programme-button {
+  background-color: #ffd91c;
+  font-size: 22px;
+  width: 100%;
+  min-height: 50px;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.no-session-text {
+  font-size: 24px;
+  text-align: center;
+}
+
+.create-button {
+  background-color: #ffd91c;
+  font-size: 20px;
+  width: 100%;
+  min-height: 45px;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  border-radius: 8px;
+}
+.create-button:hover {
+  background-color: #ffe979;
+  color: black;
+  text-decoration: none;
+}
+.card-image {
+  height: 250px;
+  width: 100%;
+}
+
+.programme-button:hover {
+  background-color: black;
+  color: #ffd91c;
+}
+
+@media screen and (max-width: 992px) {
+  .programme-button {
+    font-size: 18px !important;
+  }
+  .title {
+    font-size: 24px !important;
+  }
+  .no-session-text {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .programme-button {
+    font-size: 14px !important;
+  }
+  .no-session-text {
+    font-size: 14px;
+  }
+
+  .create-button {
+    font-size: 16px;
+    min-height: 25px;
+  }
+  .title {
+    font-size: 18px !important;
+  }
+}

@@ -1,0 +1,37 @@
+.footer-div {
+  /* position: fixed; */
+  bottom: 0;
+  /* margin-top: 10%; */
+  height: auto;
+  width: 100%;
+}
+
+.footer-button {
+  background-color: #333333;
+  border: none;
+  color: white !important;
+  font-size: 18px;
+}
+.footer-copyright {
+  color: white !important;
+  font-size: 18px;
+}
+.footer-button:hover {
+  background-color: #333333;
+  color: #ffd91c !important;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-button {
+    font-size: 12px;
+  }
+  /* .footer-div {
+    margin-top: 15%;
+  } */
+  .footer-copyright {
+    font-size: 12px;
+  }
+  .full-stop {
+    display: none;
+  }
+}
