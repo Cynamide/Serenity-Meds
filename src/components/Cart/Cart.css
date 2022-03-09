@@ -1,0 +1,15 @@
+.view-cart-button {
+  background-color: white !important;
+  color: black;
+  border-color: white;
+  box-shadow: 0 0 0 0;
+}
+
+.view-cart-button:hover {
+  color: #707070;
+  border-color: white;
+}
+
+.cart-icon {
+  font-size: 2rem;
+}

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authStateReducer } from "../../redux/reducers/authReducer";
 import { authActions } from "../../redux/actions/authActions";
 import "./Header.css";
+import Cart from "../Cart/Cart";
 
 export const Header = () => {
   const auth = useSelector((data) => authStateReducer(data));
@@ -62,11 +63,14 @@ export const Header = () => {
               <Button href="/sign-up" className="signup-header-button">
                 Sign Up
               </Button>{" "}
+              <Cart />
             </>
           ) : (
-            <Button onClick={logOut} className="logout-header-button">
-              Log Out
-            </Button>
+            <>
+              <Button onClick={logOut} className="logout-header-button">
+                Log Out
+              </Button>
+            </>
           )}
         </div>
       </nav>
