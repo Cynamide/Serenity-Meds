@@ -22,6 +22,7 @@
 .header-buttons {
   white-space: nowrap;
   margin-left: auto;
+  display: flex;
 }
 
 .login-header-button {
@@ -29,7 +30,7 @@
   color: black;
   border-color: black;
   border-radius: 3px;
-  margin-top: 0.1%;
+  margin-top: 0.5rem;
 }
 
 .login-header-button:hover {
@@ -43,7 +44,7 @@
   border: 12px;
   border-radius: 3px;
   border-color: black;
-  margin-top: 0.1%;
+  margin-top: 0.5rem;
   background-color: #2ab7ca;
   margin-left: 5%;
 }

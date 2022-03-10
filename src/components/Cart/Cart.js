@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // eslint-disable-next-line
-import { Drawer, Button } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Drawer, Button, Space } from "antd";
+import { ShoppingCartOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import "./Cart.css";
 
 function Cart() {
@@ -20,6 +20,23 @@ function Cart() {
       <Button className="view-cart-button" type="primary" onClick={showDrawer}>
         <ShoppingCartOutlined className="cart-icon" />
       </Button>
+      <Drawer
+        title="Your cart"
+        placement="right"
+        width={500}
+        onClose={onClose}
+        visible={visible}
+        extra={
+          <Button type="primary" onClick={onClose}>
+            Checkout
+            <ArrowRightOutlined />
+          </Button>
+        }
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
     </>
   );
 }
