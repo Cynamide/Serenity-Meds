@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 // eslint-disable-next-line
-import { Drawer, Button, Space } from "antd";
-import { ShoppingCartOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { Drawer, Button, Card, Row, Col, Popover } from "antd";
+import {
+  ShoppingCartOutlined,
+  ArrowRightOutlined,
+  PlusOutlined,
+  MinusOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 import "./Cart.css";
 
 function Cart() {
   // eslint-disable-next-line
+  const removeMed = <p>Remove from cart</p>;
+  const addMed = <p>Add to cart</p>;
+  const subMed = <p>Subtract from cart</p>;
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -15,6 +24,7 @@ function Cart() {
   const onClose = () => {
     setVisible(false);
   };
+
   return (
     <>
       <Button className="view-cart-button" type="primary" onClick={showDrawer}>
@@ -33,9 +43,101 @@ function Cart() {
           </Button>
         }
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <Row gutter={[16, 16]}>
+          <Col span={12}>
+            <Card
+              style={{ width: 200 }}
+              className="cart-card"
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+              }
+              actions={[
+                <Popover placement="bottom" content={removeMed} trigger="hover">
+                  <CloseCircleOutlined key="remove" />
+                </Popover>,
+                <Popover placement="bottom" content={subMed} trigger="hover">
+                  <MinusOutlined key="subQty" />
+                </Popover>,
+                <Popover placement="bottom" content={addMed} trigger="hover">
+                  <PlusOutlined key="addQty" />
+                </Popover>,
+              ]}
+            >
+              This the name of the medicine
+              <br />
+              <br />
+              <div style={{ display: "Flex", justifyContent: "space-around" }}>
+                <p>Tablets: 6</p>
+                <p>Qty: 8</p>
+              </div>
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card
+              style={{ width: 200 }}
+              className="cart-card"
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+              }
+              actions={[
+                <Popover placement="bottom" content={removeMed} trigger="hover">
+                  <CloseCircleOutlined key="remove" />
+                </Popover>,
+                <Popover placement="bottom" content={subMed} trigger="hover">
+                  <MinusOutlined key="subQty" />
+                </Popover>,
+                <Popover placement="bottom" content={addMed} trigger="hover">
+                  <PlusOutlined key="addQty" />
+                </Popover>,
+              ]}
+            >
+              This the name of the medicine
+              <br />
+              <br />
+              <div style={{ display: "Flex", justifyContent: "space-around" }}>
+                <p>Tablets: 6</p>
+                <p>Qty: 8</p>
+              </div>
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card
+              style={{ width: 200 }}
+              className="cart-card"
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+              }
+              actions={[
+                <Popover placement="bottom" content={removeMed} trigger="hover">
+                  <CloseCircleOutlined key="remove" />
+                </Popover>,
+                <Popover placement="bottom" content={subMed} trigger="hover">
+                  <MinusOutlined key="subQty" />
+                </Popover>,
+                <Popover placement="bottom" content={addMed} trigger="hover">
+                  <PlusOutlined key="addQty" />
+                </Popover>,
+              ]}
+            >
+              This the name of the medicine
+              <br />
+              <br />
+              <div style={{ display: "Flex", justifyContent: "space-around" }}>
+                <p>Tablets: 6</p>
+                <p>Qty: 8</p>
+              </div>
+            </Card>
+          </Col>
+        </Row>
       </Drawer>
     </>
   );
