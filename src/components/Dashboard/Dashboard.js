@@ -21,6 +21,34 @@ export const Dashboard = () => {
   const auth = useSelector((data) => authStateReducer(data));
   // eslint-disable-next-line
   const history = useHistory();
+  const alphabets = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
 
   // useEffect(() => {
   //   if (!auth.authStateReducer.access_token) {
@@ -77,19 +105,6 @@ export const Dashboard = () => {
           </Row>
           {programme.length > 0 ? (
             <>
-              <Row>
-                <Col xxl={6} xl={6} lg={6} xs={6} md={6} sm={6} />
-                <Col xxl={12} xl={12} lg={12} xs={12} md={12} sm={12}>
-                  <div style={{ marginTop: 30, textAlign: "center" }}>
-                    <Link to="/teaching-resources">
-                      <Button className="programme-button">
-                        Start a new programme{" "}
-                      </Button>
-                    </Link>
-                  </div>
-                </Col>
-                <Col xxl={6} xl={6} lg={6} xs={6} md={6} sm={6} />
-              </Row>
               <Row style={{ marginTop: "80px" }}>
                 <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
                 <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
@@ -261,6 +276,50 @@ export const Dashboard = () => {
               </Row>
             </>
           )}
+
+          <Row style={{ "margin-top": "10rem" }}>
+            <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+            <Col
+              xxl={18}
+              xl={18}
+              lg={18}
+              xs={20}
+              md={20}
+              sm={20}
+              style={{ color: "black", textAlign: "center" }}
+            >
+              <Title className="title">
+                Did'nt find what you were looking for? Search from our extensive
+                selection of medicines
+              </Title>
+            </Col>
+            <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+          </Row>
+          <Row style={{ marginTop: "30px" }}>
+            <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
+            <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
+              <List
+                grid={{
+                  gutter: 8,
+                  xs: 8,
+                  sm: 8,
+                  md: 8,
+                  lg: 20,
+                  xl: 20,
+                  xxl: 20,
+                }}
+                dataSource={alphabets}
+                renderItem={(resource) => (
+                  <List.Item>
+                    <Button size="large" shape="round" className="search-btn">
+                      {resource}
+                    </Button>
+                  </List.Item>
+                )}
+              />
+            </Col>
+            <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
+          </Row>
         </Content>
       </Layout>
     </>

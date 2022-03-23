@@ -1,8 +1,14 @@
 .title {
   font-size: 30px !important;
 }
+
 .card-title {
   font-size: 18px;
+}
+
+.search-btn {
+  background-color: #2ab7ca;
+  color: white;
 }
 
 .plans-button {

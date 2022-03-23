@@ -51,6 +51,7 @@ function Cart() {
               cover={
                 <img
                   alt="example"
+                  className="cart-image"
                   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                 />
               }
@@ -82,6 +83,7 @@ function Cart() {
               cover={
                 <img
                   alt="example"
+                  className="cart-image"
                   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                 />
               }
@@ -113,6 +115,7 @@ function Cart() {
               cover={
                 <img
                   alt="example"
+                  className="cart-image"
                   src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                 />
               }
