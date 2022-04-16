@@ -9,6 +9,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import "./Cart.css";
+import displayRazorpay from "../../utils/PaymentGateway";
 
 function Cart() {
   // eslint-disable-next-line
@@ -24,6 +25,10 @@ function Cart() {
   const onClose = () => {
     setVisible(false);
   };
+  const checkOut = () => {
+    displayRazorpay();
+    onClose();
+  };
 
   return (
     <>
@@ -37,7 +42,7 @@ function Cart() {
         onClose={onClose}
         visible={visible}
         extra={
-          <Button type="primary" onClick={onClose}>
+          <Button type="primary" onClick={checkOut}>
             Checkout
             <ArrowRightOutlined />
           </Button>
