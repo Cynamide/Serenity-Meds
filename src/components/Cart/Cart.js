@@ -9,7 +9,8 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import "./Cart.css";
-import displayRazorpay from "../../utils/PaymentGateway";
+// import DisplayRazorpay from "../../utils/PaymentGateway";
+import { useHistory } from "react-router-dom";
 
 function Cart() {
   // eslint-disable-next-line
@@ -17,7 +18,7 @@ function Cart() {
   const addMed = <p>Add to cart</p>;
   const subMed = <p>Subtract from cart</p>;
   const [visible, setVisible] = useState(false);
-
+  let navigate = useHistory();
   const showDrawer = () => {
     setVisible(true);
   };
@@ -26,8 +27,42 @@ function Cart() {
     setVisible(false);
   };
   const checkOut = () => {
-    displayRazorpay();
-    onClose();
+    // const data = await fetch("http://localhost:1337/razorpay", {
+    //   method: "POST",
+    // }).then((t) => t.json());
+    const data = { currency: "INR", amount: "1000" };
+    console.log(data);
+
+    const options = {
+      key: "rzp_test_RoWkvu9j4djJnF",
+      currency: data.currency,
+      amount: data.amount,
+      name: "Serenity Meds",
+      description: "Wallet Transaction",
+      image: "https://serenitymeds.ml/logo.png",
+      order_id: data.id,
+      handler: function (response) {
+        // alert("PAYMENT ID ::" + response.razorpay_payment_id);
+        // alert("ORDER ID :: " + response.razorpay_order_id);
+        if (!response.razorpay_payment_id || response.razorpay_payment_id < 1) {
+          navigate.push("/payment-failed");
+        } else {
+          navigate.push("/payment-success");
+        }
+        console.log(response);
+      },
+      prefill: {
+        name: "Arjit Agarwal",
+        email: "arjitagarwal123@gmail.com",
+        contact: "9860901274",
+      },
+      theme: {
+        color: "#2ab7ca",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
   return (
