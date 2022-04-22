@@ -1,9 +1,8 @@
 import { Layout, Row, Col, Typography, Button } from "antd";
-import React, { useState } from "react";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import React from "react";
+
 import { useHistory } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
-import { useDispatch } from "react-redux";
 import "./PaymentSuccess.css";
 // import queryString from "query-string";
 

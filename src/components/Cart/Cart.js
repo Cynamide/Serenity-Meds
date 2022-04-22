@@ -102,6 +102,7 @@ function Cart() {
                 <Popover placement="bottom" content={subMed} trigger="hover">
                   <MinusOutlined key="subQty" />
                 </Popover>,
+                <b>6</b>,
                 <Popover placement="bottom" content={addMed} trigger="hover">
                   <PlusOutlined key="addQty" />
                 </Popover>,
@@ -110,10 +111,7 @@ function Cart() {
               This the name of the medicine
               <br />
               <br />
-              <div style={{ display: "Flex", justifyContent: "space-around" }}>
-                <p>Tablets: 6</p>
-                <p>Qty: 8</p>
-              </div>
+              <p>Tablets: 6</p>
             </Card>
           </Col>
           <Col span={12}>

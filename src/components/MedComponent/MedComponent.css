@@ -1,0 +1,40 @@
+.med-image{
+    width: 30%
+}
+.card-container{
+    display: flex;
+}
+.med-info{
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.med-details{
+    font-size: 1.5rem;
+}
+@media screen and (max-width: 992px) {
+.med-image{
+   width: 50%;
+}
+.med-details {
+    font-size: 1.3rem;
+}
+.med-title{
+    font-size: 1.5rem;
+}
+.card-container {
+    display: block;
+}
+}
+
+@media screen and (max-width: 650px) {
+.med-image {
+    width: 60%;
+   
+}
+.med-details {
+    font-size: 1rem;
+}
+.med-title {
+    font-size: 1rem;
+}
+}
