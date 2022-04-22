@@ -1,0 +1,93 @@
+.payment-text {
+    font-size: 18px !important;
+    text-align: center;
+}
+
+.payment-top-row {
+    text-align: center;
+}
+
+
+
+.payment-title {
+    font-size: 64px !important;
+    
+}
+
+.payment-subtitle {
+    font-size: 32px !important;
+}
+
+.arrow {
+    font-size: 32px;
+    float: left;
+    margin-top: 0.5%;
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid black !important;
+    border-radius: 8px !important;
+}
+
+.payment-button {
+    width: 100%;
+    color: white;
+    margin-top: 3%;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: white;
+    background-color: #2ab7ca;
+    height: 50px;
+    font-size: 18px;
+}
+
+.payment-button:hover {
+    color: white;
+    background-color: #08a4bd;
+}
+
+@media screen and (max-width: 992px) {
+    .payment-text {
+        font-size: 14px;
+        margin-top: 50px;
+    }
+
+    .payment-title {
+        font-size: 24px !important;
+        /* float: left; */
+        margin-right: 8%;
+    }
+
+    .arrow {
+        font-size: 24px;
+        float: left;
+        margin-top: 0.5%;
+    }
+
+    .payment-top-row {
+        margin-top: 7%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .payment-text {
+        font-size: 14px !important;
+        margin-top: 2rem;
+    }
+
+    .payment-title {
+        font-size: 20px !important;
+    }
+
+    .arrow {
+        font-size: 18px;
+        float: left;
+        margin-top: 0.5%;
+    }
+
+    .payment-top-row {
+        margin-top: 12%;
+    }
+}

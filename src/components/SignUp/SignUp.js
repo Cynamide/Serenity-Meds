@@ -43,13 +43,14 @@ export const SignUp = () => {
 
   const handleSignUp = () => {
     const body = {
-      name: name,
+      first_name: name,
+      username: email,
       email: email,
       contact: contact,
       password: password,
     };
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/users/`, body)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/user/register/`, body)
       .then((res) => {
         setLoginError("Successfully Signed Up");
       })

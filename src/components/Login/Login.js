@@ -56,7 +56,7 @@ export const Login = () => {
           type: "SET",
         };
         dispatch(authActions(data));
-        history.push("/volunteer-dashboard");
+        history.push("/");
       })
       .catch((err) => {
         setLoginError("Invalid email or password!");
