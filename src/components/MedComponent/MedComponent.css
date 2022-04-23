@@ -1,6 +1,9 @@
 .med-image{
     width: 30%
 }
+.card{
+    margin-bottom: 2rem;
+}
 .card-container{
     display: flex;
 }

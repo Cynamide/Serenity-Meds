@@ -43,20 +43,38 @@ export const SignUp = () => {
 
   const handleSignUp = () => {
     const body = {
-      first_name: name,
       username: email,
       email: email,
-      contact: contact,
+      first_name: name.split(" ")[0],
+      last_name: name.split(" ")[1],
+      profile: { phone: contact, address: address },
       password: password,
     };
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/user/register/`, body)
       .then((res) => {
         setLoginError("Successfully Signed Up");
+        console.log(res);
+        const body2 = {
+          username: email,
+          password: password,
+        };
+        axios
+          .post(`${process.env.REACT_APP_BACKEND_URL}/user/token/`, body2)
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem("refresh-token", res.data.refresh);
+            localStorage.setItem("access-token", res.data.access);
+            localStorage.setItem("user", JSON.stringify(email));
+            redirectToLanding();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
-        setLoginError("Password is too weak, please input a stronger password");
-        console.log(err.detail);
+        setLoginError("There was an error signing up. Try again.");
+        console.log(err);
       });
   };
 
@@ -152,11 +170,11 @@ export const SignUp = () => {
               >
                 <div>
                   <div style={{ paddingBottom: "1rem" }}>
-                    <h3>Name</h3>
+                    <h3>Full Name</h3>
                     <Input
                       value={name}
                       onChange={onChangeName}
-                      placeholder="Eg: Ritesh"
+                      placeholder="Eg: Ritesh Kumar"
                       className="input-field"
                     />
                   </div>

@@ -11,7 +11,7 @@ import { Fade } from "react-awesome-reveal";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./Login.css";
-import { authActions } from "../../redux/actions/authActions";
+// import { authActions } from "../../redux/actions/authActions";
 // import queryString from "query-string";
 
 const { Content } = Layout;
@@ -32,7 +32,10 @@ export const Login = () => {
   //     setUrl(query);
   //   }
   // }, []);
-
+  const redirectToLanding = (e) => {
+    let path = `/`;
+    history.push(path);
+  };
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -42,25 +45,27 @@ export const Login = () => {
 
   const normalLogin = () => {
     const body = {
-      email: email,
+      username: email,
       password: password,
     };
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/jwt/create`, body)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/user/token/`, body)
       .then((res) => {
-        localStorage.setItem("access_token", res.data.access);
-        localStorage.setItem("refresh_token", res.data.refresh);
-        const data = {
-          access_token: res.data.access,
-          refresh_token: res.data.refresh,
-          type: "SET",
-        };
-        dispatch(authActions(data));
-        history.push("/");
+        console.log(res);
+        localStorage.setItem("access-token", res.data.access);
+        localStorage.setItem("refresh-token", res.data.refresh);
+        localStorage.setItem("user", JSON.stringify(email));
+        redirectToLanding();
+        // const data = {
+        //   access_token: res.data.access,
+        //   refresh_token: res.data.refresh,
+        //   type: "SET",
+        // };
+        // dispatch(authActions(data));
       })
       .catch((err) => {
         setLoginError("Invalid email or password!");
-        console.log(err.detail);
+        console.log(err);
       });
   };
 
