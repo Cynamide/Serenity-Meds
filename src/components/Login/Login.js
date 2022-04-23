@@ -8,7 +8,6 @@ import {
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import "./Login.css";
 // import { authActions } from "../../redux/actions/authActions";
@@ -19,7 +18,7 @@ const { Title, Paragraph } = Typography;
 
 export const Login = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+
   const [loginError, setLoginError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

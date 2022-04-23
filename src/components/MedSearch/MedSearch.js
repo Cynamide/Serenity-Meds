@@ -5,8 +5,6 @@ import {
   Typography,
   // Button,
   // Input,
-  Card,
-  Popover,
 } from "antd";
 import React from "react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -20,13 +18,11 @@ import "./MedSearch.css";
 // import queryString from "query-string";
 
 const { Content } = Layout;
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 export const MedSearch = () => {
   const history = useHistory();
-  const removeMed = <p>Remove from cart</p>;
-  const addMed = <p>Add to cart</p>;
-  const subMed = <p>Subtract from cart</p>;
+
   return (
     <>
       <Layout>
