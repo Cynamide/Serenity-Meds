@@ -11,6 +11,7 @@ import {
 import "./Cart.css";
 // import DisplayRazorpay from "../../utils/PaymentGateway";
 import { useHistory } from "react-router-dom";
+import CartData from "../../utils/CartData";
 
 function Cart() {
   // eslint-disable-next-line
@@ -84,100 +85,38 @@ function Cart() {
         }
       >
         <Row gutter={[16, 16]}>
-          <Col span={12}>
-            <Card
-              style={{ width: 200 }}
-              className="cart-card"
-              cover={
-                <img
-                  alt="example"
-                  className="cart-image"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
-              actions={[
-                <Popover placement="bottom" content={removeMed} trigger="hover">
-                  <CloseCircleOutlined key="remove" />
-                </Popover>,
-                <Popover placement="bottom" content={subMed} trigger="hover">
-                  <MinusOutlined key="subQty" />
-                </Popover>,
-                <b>6</b>,
-                <Popover placement="bottom" content={addMed} trigger="hover">
-                  <PlusOutlined key="addQty" />
-                </Popover>,
-              ]}
-            >
-              This the name of the medicine
-              <br />
-              <br />
-              <p>Tablets: 6</p>
-            </Card>
-          </Col>
-          <Col span={12}>
-            <Card
-              style={{ width: 200 }}
-              className="cart-card"
-              cover={
-                <img
-                  alt="example"
-                  className="cart-image"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
-              actions={[
-                <Popover placement="bottom" content={removeMed} trigger="hover">
-                  <CloseCircleOutlined key="remove" />
-                </Popover>,
-                <Popover placement="bottom" content={subMed} trigger="hover">
-                  <MinusOutlined key="subQty" />
-                </Popover>,
-                <Popover placement="bottom" content={addMed} trigger="hover">
-                  <PlusOutlined key="addQty" />
-                </Popover>,
-              ]}
-            >
-              This the name of the medicine
-              <br />
-              <br />
-              <div style={{ display: "Flex", justifyContent: "space-around" }}>
-                <p>Tablets: 6</p>
-                <p>Qty: 8</p>
-              </div>
-            </Card>
-          </Col>
-          <Col span={12}>
-            <Card
-              style={{ width: 200 }}
-              className="cart-card"
-              cover={
-                <img
-                  alt="example"
-                  className="cart-image"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
-              actions={[
-                <Popover placement="bottom" content={removeMed} trigger="hover">
-                  <CloseCircleOutlined key="remove" />
-                </Popover>,
-                <Popover placement="bottom" content={subMed} trigger="hover">
-                  <MinusOutlined key="subQty" />
-                </Popover>,
-                <Popover placement="bottom" content={addMed} trigger="hover">
-                  <PlusOutlined key="addQty" />
-                </Popover>,
-              ]}
-            >
-              This the name of the medicine
-              <br />
-              <br />
-              <div style={{ display: "Flex", justifyContent: "space-around" }}>
-                <p>Tablets: 6</p>
-                <p>Qty: 8</p>
-              </div>
-            </Card>
-          </Col>
+          {CartData.map((med) => (
+            <Col span={12}>
+              <Card
+                style={{ width: 200 }}
+                className="cart-card"
+                cover={
+                  <img alt="example" className="cart-image" src={med.image} />
+                }
+                actions={[
+                  <Popover
+                    placement="bottom"
+                    content={removeMed}
+                    trigger="hover"
+                  >
+                    <CloseCircleOutlined key="remove" />
+                  </Popover>,
+                  <Popover placement="bottom" content={subMed} trigger="hover">
+                    <MinusOutlined key="subQty" />
+                  </Popover>,
+                  <b>6</b>,
+                  <Popover placement="bottom" content={addMed} trigger="hover">
+                    <PlusOutlined key="addQty" />
+                  </Popover>,
+                ]}
+              >
+                {med.name}
+                <br />
+                <br />
+                <p>₹ {med.price}</p>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Drawer>
     </>

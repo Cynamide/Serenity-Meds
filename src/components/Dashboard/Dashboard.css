@@ -2,6 +2,18 @@
   font-size: 30px !important;
 }
 
+.dash-card-container{
+  display: flex;
+}
+
+.dash-med-info{
+  margin-left: 1rem;
+}
+
+.dash-med-title{
+  font-size: 1.2rem;
+}
+
 .card-title {
   font-size: 18px;
 }
@@ -76,6 +88,13 @@
   .no-session-text {
     font-size: 20px;
   }
+  .dash-med-image{
+    width: 20%;
+  }
+  .dash-med-title
+  {
+    font-size: 1.2rem;
+  }
 }
 @media screen and (max-width: 600px) {
   .programme-button {
@@ -84,7 +103,9 @@
   .no-session-text {
     font-size: 14px;
   }
-
+  .dash-med-title {
+    font-size: 1rem;
+  }
   .create-button {
     font-size: 16px;
     min-height: 25px;

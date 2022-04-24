@@ -9,10 +9,11 @@ import {
 } from "@ant-design/icons";
 import { authStateReducer } from "../../redux/reducers/authReducer";
 import { useSelector } from "react-redux";
+import MedData from "../../utils/MedData";
 import "./Dashboard.css";
 
 const { Content } = Layout;
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 export const Dashboard = () => {
   const [programme, setProgramme] = useState([]);
@@ -50,12 +51,10 @@ export const Dashboard = () => {
     "Z",
   ];
 
-  // useEffect(() => {
-  //   if (!auth.authStateReducer.access_token) {
-  //     history.push("/login");
-  //   }
-  //   // eslint-disable-next-line
-  // }, [auth]);
+  const RedirectToMedPage = (med) => {
+    localStorage.setItem("med", JSON.stringify(med));
+    history.push("/medicine");
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -118,7 +117,7 @@ export const Dashboard = () => {
                       xl: 2,
                       xxl: 3,
                     }}
-                    dataSource={programme}
+                    dataSource={MedData}
                     renderItem={(resource) => (
                       <List.Item>
                         <Card
@@ -224,26 +223,30 @@ export const Dashboard = () => {
                     xl: 2,
                     xxl: 3,
                   }}
-                  dataSource={[
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                    { loading: true },
-                  ]}
+                  dataSource={MedData}
                   renderItem={(resource) => (
                     <List.Item>
                       <Card
-                        className="programme-card"
-                        loading={resource.loading}
-                      />
+                        onClick={() => RedirectToMedPage(resource.name)}
+                        hoverable
+                        className="dash-card"
+                      >
+                        <div className="dash-card-container">
+                          <img
+                            src={resource.image}
+                            alt="medicine"
+                            className="dash-med-image"
+                          />
+                          <div className="dash-med-info">
+                            <Title level={3}>
+                              <b className="dash-med-title">{resource.name}</b>
+                            </Title>
+                            <Paragraph className="dash-med-details">
+                              ₹ {resource.price}
+                            </Paragraph>
+                          </div>
+                        </div>
+                      </Card>
                     </List.Item>
                   )}
                 />
@@ -289,7 +292,7 @@ export const Dashboard = () => {
               style={{ color: "black", textAlign: "center" }}
             >
               <Title className="title">
-                Did'nt find what you were looking for? Search from our extensive
+                Didn't find what you were looking for? Search from our extensive
                 selection of medicines
               </Title>
             </Col>
