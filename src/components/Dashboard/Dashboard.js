@@ -300,13 +300,13 @@ export const Dashboard = () => {
             <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
               <List
                 grid={{
-                  gutter: 8,
-                  xs: 8,
-                  sm: 8,
-                  md: 8,
-                  lg: 20,
-                  xl: 20,
-                  xxl: 20,
+                  gutter: 16,
+                  xs: 6,
+                  sm: 6,
+                  md: 6,
+                  lg: 13,
+                  xl: 13,
+                  xxl: 13,
                 }}
                 dataSource={alphabets}
                 renderItem={(resource) => (

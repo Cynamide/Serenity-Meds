@@ -53,6 +53,29 @@ export const MedSearch = () => {
               <Col xxl={3} xl={3} lg={3} xs={3} md={3} sm={3} />
             </Row>
           </Fade>
+          <Fade up>
+            <Row>
+              <Col xxl={3} xl={3} lg={3} xs={3} md={3} sm={3} />
+              <Col
+                xxl={18}
+                xl={18}
+                lg={18}
+                xs={18}
+                md={18}
+                sm={18}
+                style={{ color: "black" }}
+              >
+                <div className="login-top-row">
+                  <ArrowLeftOutlined
+                    onClick={history.goBack}
+                    className="arrow"
+                  />
+                  <Title className="search-title">aa</Title>
+                </div>
+              </Col>
+              <Col xxl={3} xl={3} lg={3} xs={3} md={3} sm={3} />
+            </Row>
+          </Fade>
         </Content>
       </Layout>
     </>
