@@ -208,6 +208,7 @@ function Cart() {
   };
   const total = () => {
     let sum = 0;
+    // eslint-disable-next-line
     cartData.map((item) => {
       sum += item.price * item.quantity;
     });
