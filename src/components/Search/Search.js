@@ -36,7 +36,7 @@ export const Search = () => {
     "Y",
     "Z",
   ];
-  const [alphabet, setAlphabet] = useState("");
+  const [alphabet, setAlphabet] = useState("a");
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -48,8 +48,7 @@ export const Search = () => {
   };
 
   const RedirectToMedPage = (med) => {
-    localStorage.setItem("med", JSON.stringify(med));
-    history.push("/medicine");
+    history.push("/medicine?id=" + med.id);
   };
 
   useEffect(() => {
@@ -126,7 +125,7 @@ export const Search = () => {
                   renderItem={(resource) => (
                     <List.Item>
                       <Card
-                        onClick={() => RedirectToMedPage(resource.name)}
+                        onClick={() => RedirectToMedPage(resource)}
                         hoverable
                         className="dash-card"
                       >

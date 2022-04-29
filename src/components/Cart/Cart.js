@@ -82,6 +82,7 @@ function Cart() {
       .get(`${process.env.REACT_APP_BACKEND_URL}/user/cart/`, config)
       .then((res) => {
         setCartData(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err.data);
@@ -113,7 +114,11 @@ function Cart() {
                 style={{ width: 200 }}
                 className="cart-card"
                 cover={
-                  <img alt="example" className="cart-image" src={med.image} />
+                  <img
+                    alt="example"
+                    className="cart-image"
+                    src={med.image_url}
+                  />
                 }
                 actions={[
                   <Popover
@@ -126,7 +131,7 @@ function Cart() {
                   <Popover placement="bottom" content={subMed} trigger="hover">
                     <MinusOutlined key="subQty" />
                   </Popover>,
-                  <b>6</b>,
+                  <b>{med.quantity}</b>,
                   <Popover placement="bottom" content={addMed} trigger="hover">
                     <PlusOutlined key="addQty" />
                   </Popover>,

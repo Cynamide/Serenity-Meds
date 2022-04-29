@@ -50,7 +50,36 @@ export const MedComponent = () => {
       config.headers.Authorization = `Bearer ${token}`;
     }
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/add_to_cart/${id}/`, config)
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/add_to_cart/${id}`,
+        {},
+        config
+      )
+      .then((res) => {
+        setQty(res.data.quantity);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
+
+  const onDelete = () => {
+    const id = queryString.parse(history.location.search).id;
+    const token = localStorage.getItem("access-token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND_URL}/user/remove_from_cart/${id}`,
+        config
+      )
       .then((res) => {
         setQty(res.data.quantity);
         console.log(res.data);
@@ -72,7 +101,11 @@ export const MedComponent = () => {
       config.headers.Authorization = `Bearer ${token}`;
     }
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/add_to_cart/${id}/`, config)
+      .post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/remove_from_cart/${id}`,
+        {},
+        config
+      )
       .then((res) => {
         setQty(res.data.quantity);
         console.log(res.data);
@@ -93,6 +126,7 @@ export const MedComponent = () => {
       .get(`${process.env.REACT_APP_BACKEND_URL}/product/${id}/`, config)
       .then((res) => {
         setMed(res.data);
+        setQty(res.data.quantity);
         console.log(res.data);
       })
       .catch((err) => {
@@ -102,7 +136,7 @@ export const MedComponent = () => {
 
   const inCartAction = [
     <Popover placement="bottom" content={removeMed} trigger="hover">
-      <CloseCircleOutlined key="remove" />
+      <CloseCircleOutlined onClick={onDelete} key="remove" />
     </Popover>,
     <Popover placement="bottom" content={subMed} trigger="hover">
       <MinusOutlined onClick={onSubMed} key="subQty" />

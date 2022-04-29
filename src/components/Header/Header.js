@@ -36,7 +36,7 @@ export const Header = () => {
   return (
     <>
       <nav className="navbar">
-        <Link to={loggedIn ? "/volunteer-dashboard" : "/"}>
+        <Link to="/">
           <div className="nav-logo">
             <img className="site-logo" src="/logo.png" alt="site-logo" />
           </div>
