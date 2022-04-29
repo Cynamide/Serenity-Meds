@@ -11,7 +11,7 @@ import {
 import "./Cart.css";
 // import DisplayRazorpay from "../../utils/PaymentGateway";
 import { useHistory } from "react-router-dom";
-import CartData from "../../utils/CartData";
+import axios from "axios";
 
 function Cart() {
   // eslint-disable-next-line
@@ -19,8 +19,10 @@ function Cart() {
   const addMed = <p>Add to cart</p>;
   const subMed = <p>Subtract from cart</p>;
   const [visible, setVisible] = useState(false);
+  const [cartData, setCartData] = useState([]);
   let navigate = useHistory();
   const showDrawer = () => {
+    viewCart();
     setVisible(true);
   };
   // eslint-disable-next-line
@@ -66,6 +68,26 @@ function Cart() {
     paymentObject.open();
   };
 
+  const viewCart = () => {
+    const token = localStorage.getItem("access-token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/user/cart/`, config)
+      .then((res) => {
+        setCartData(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
+
   return (
     <>
       <Button className="view-cart-button" type="primary" onClick={showDrawer}>
@@ -85,7 +107,7 @@ function Cart() {
         }
       >
         <Row gutter={[16, 16]}>
-          {CartData.map((med) => (
+          {cartData.map((med) => (
             <Col span={12}>
               <Card
                 style={{ width: 200 }}

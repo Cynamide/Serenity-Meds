@@ -1,12 +1,12 @@
 import { FooterComp } from "../components/Footer/FooterComp";
 import { Header } from "../components/Header/Header";
-import { MedSearch } from "../components/MedSearch/MedSearch";
+import { Search } from "../components/Search/Search";
 
 export const MedSearchPage = () => {
   return (
     <>
       <Header />
-      <MedSearch />
+      <Search />
       <FooterComp />
     </>
   );

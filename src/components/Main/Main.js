@@ -16,6 +16,7 @@ export const Main = () => {
       <Route exact path="/payment-success" component={PaymentSuccessPage} />
       <Route exact path="/medicine" component={MedComponentPage} />
       <Route exact path="/list" component={MedSearchPage} />
+      <Route exact path="/search" component={MedSearchPage} />
     </Switch>
   );
 };

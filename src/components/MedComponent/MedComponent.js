@@ -7,14 +7,13 @@ import {
   // Input,
   Card,
   Popover,
+  Button,
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import "./MedComponent.css";
-// import { useDispatch } from "react-redux";
-// import axios from "axios";
 import {
   // ShoppingCartOutlined,
   // ArrowRightOutlined,
@@ -22,13 +21,14 @@ import {
   MinusOutlined,
   CloseCircleOutlined,
 } from "@ant-design/icons";
-import MedData from "../../utils/MedData";
+import axios from "axios";
 
 // import { authActions } from "../../redux/actions/authActions";
 // import queryString from "query-string";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
+const queryString = require("query-string");
 
 export const MedComponent = () => {
   const history = useHistory();
@@ -36,19 +36,88 @@ export const MedComponent = () => {
   const addMed = <p>Add to cart</p>;
   const subMed = <p>Subtract from cart</p>;
   const [med, setMed] = useState(null);
-  useEffect(() => {
-    for (var i in MedData) {
-      console.log(MedData[i].name.length, localStorage.getItem("med").length);
-      if (
-        MedData[i].name ===
-        localStorage.getItem("med").replace(/^["'](.+(?=["']$))["']$/, "$1")
-      ) {
-        setMed(MedData[i]);
-        console.log(MedData[i]);
-        break; // If you want to break out of the loop once you've found a match
-      }
+  const [qty, setQty] = useState(0);
+
+  const onAddMed = () => {
+    const id = queryString.parse(history.location.search).id;
+    const token = localStorage.getItem("access-token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-  }, []);
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/add_to_cart/${id}/`, config)
+      .then((res) => {
+        setQty(res.data.quantity);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
+
+  const onSubMed = () => {
+    const id = queryString.parse(history.location.search).id;
+    const token = localStorage.getItem("access-token");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/add_to_cart/${id}/`, config)
+      .then((res) => {
+        setQty(res.data.quantity);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
+
+  useEffect(() => {
+    const id = queryString.parse(history.location.search).id;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/product/${id}/`, config)
+      .then((res) => {
+        setMed(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }, [history.location.search]);
+
+  const inCartAction = [
+    <Popover placement="bottom" content={removeMed} trigger="hover">
+      <CloseCircleOutlined key="remove" />
+    </Popover>,
+    <Popover placement="bottom" content={subMed} trigger="hover">
+      <MinusOutlined onClick={onSubMed} key="subQty" />
+    </Popover>,
+    <b>{qty}</b>,
+    <Popover placement="bottom" content={addMed} trigger="hover">
+      <PlusOutlined onClick={onAddMed} key="addQty" />
+    </Popover>,
+  ];
+
+  const notInCartAction = [
+    <Button onClick={onAddMed} className="signup-header-button">
+      Add to Cart
+    </Button>,
+  ];
 
   return (
     <>
@@ -94,34 +163,11 @@ export const MedComponent = () => {
                 {med && (
                   <Card
                     className="card"
-                    actions={[
-                      <Popover
-                        placement="bottom"
-                        content={removeMed}
-                        trigger="hover"
-                      >
-                        <CloseCircleOutlined key="remove" />
-                      </Popover>,
-                      <Popover
-                        placement="bottom"
-                        content={subMed}
-                        trigger="hover"
-                      >
-                        <MinusOutlined key="subQty" />
-                      </Popover>,
-                      <b>6</b>,
-                      <Popover
-                        placement="bottom"
-                        content={addMed}
-                        trigger="hover"
-                      >
-                        <PlusOutlined key="addQty" />
-                      </Popover>,
-                    ]}
+                    actions={qty > 0 ? inCartAction : notInCartAction}
                   >
                     <div className="card-container">
                       <img
-                        src={med.image}
+                        src={med.image_url}
                         alt="medicine"
                         className="med-image"
                       />

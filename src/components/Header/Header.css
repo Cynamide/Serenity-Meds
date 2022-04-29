@@ -59,18 +59,18 @@
 }
 
 .logout-header-button {
-  color: black;
+  color: white;
   border-style: solid;
   border: 12px;
   border-radius: 3px;
   border-color: black;
-  margin-top: 0.1%;
+  margin-top: 0.5rem;
   background-color: #2ab7ca;
-  margin-left: auto;
+  margin-left: 5%;
 }
 
 .logout-header-button:hover {
-  color: #707070;
+  color: white;
   border-style: solid;
   border: 12px;
   border-radius: 3px;

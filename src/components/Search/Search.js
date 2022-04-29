@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Typography, Button, Card, List } from "antd";
+import { Layout, Typography, Row, Col, Button, Card, List } from "antd";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { authStateReducer } from "../../redux/reducers/authReducer";
-import { useSelector } from "react-redux";
-import "./Dashboard.css";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
-export const Dashboard = () => {
-  const [dataBoard, setDataBoard] = useState([]);
-  // eslint-disable-next-line
-  const auth = useSelector((data) => authStateReducer(data));
-  // eslint-disable-next-line
+export const Search = () => {
   const history = useHistory();
   const alphabets = [
     "A",
@@ -43,56 +36,47 @@ export const Dashboard = () => {
     "Y",
     "Z",
   ];
+  const [alphabet, setAlphabet] = useState("");
+  const [data, setData] = useState([]);
 
-  const RedirectToMedPage = (med) => {
-    history.push("/medicine?id=" + med.id);
-  };
+  useEffect(() => {
+    console.log("DATA:", data.product_list);
+  }, [data]);
 
   const onSearch = (data) => {
-    localStorage.setItem("search", JSON.stringify(data.target.outerText));
-    history.push("/search");
+    setAlphabet(data.target.outerText);
+  };
+
+  const RedirectToMedPage = (med) => {
+    localStorage.setItem("med", JSON.stringify(med));
+    history.push("/medicine");
   };
 
   useEffect(() => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const data = {
-      alphabet: "a",
-    };
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/product/`, data, config)
-      .then((res) => {
-        setDataBoard(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.data);
-      });
-  }, []);
+    if (alphabet) {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const data = {
+        alphabet: alphabet,
+      };
+      axios
+        .post(`${process.env.REACT_APP_BACKEND_URL}/product/`, data, config)
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((err) => {
+          console.log(err.data);
+        });
+    }
+  }, [alphabet]);
+
   return (
     <>
       <Layout style={{ marginTop: "5%" }}>
         <Content className="content-class" style={{ marginBottom: "5%" }}>
-          <Row>
-            <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
-            <Col
-              xxl={18}
-              xl={18}
-              lg={18}
-              xs={20}
-              md={20}
-              sm={20}
-              style={{ color: "black", textAlign: "center" }}
-            >
-              <Title className="title">
-                Find the meds of your choice from our assorted list below!
-              </Title>
-            </Col>
-            <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
-          </Row>
           <Row style={{ marginTop: "30px" }}>
             <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
             <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
@@ -124,10 +108,10 @@ export const Dashboard = () => {
             </Col>
             <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
           </Row>
-          {dataBoard && (
-            <Row style={{ marginTop: "80px" }}>
-              <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
-              <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
+          <Row style={{ marginTop: "80px" }}>
+            <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
+            <Col xxl={16} xl={16} lg={16} xs={20} md={20} sm={20}>
+              {data.product_list && (
                 <List
                   grid={{
                     gutter: 16,
@@ -138,11 +122,11 @@ export const Dashboard = () => {
                     xl: 2,
                     xxl: 3,
                   }}
-                  dataSource={dataBoard.product_list}
+                  dataSource={data.product_list}
                   renderItem={(resource) => (
                     <List.Item>
                       <Card
-                        onClick={() => RedirectToMedPage(resource)}
+                        onClick={() => RedirectToMedPage(resource.name)}
                         hoverable
                         className="dash-card"
                       >
@@ -165,10 +149,10 @@ export const Dashboard = () => {
                     </List.Item>
                   )}
                 />
-              </Col>
-              <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
-            </Row>
-          )}
+              )}
+            </Col>
+            <Col xxl={4} xl={4} lg={4} xs={2} md={2} sm={2} />
+          </Row>
         </Content>
       </Layout>
     </>

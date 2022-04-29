@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { authStateReducer } from "../../redux/reducers/authReducer";
-import { authActions } from "../../redux/actions/authActions";
 import "./Header.css";
 import Cart from "../Cart/Cart";
 
 export const Header = () => {
-  const auth = useSelector((data) => authStateReducer(data));
-  const dispatch = useDispatch();
   const history = useHistory();
   // eslint-disable-next-line
   const [nav, setNav] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (auth.authStateReducer.access_token) {
+    if (localStorage.getItem("access-token")) {
       setLoggedIn(true);
     }
-  }, [auth]);
+  }, [loggedIn]);
 
   useEffect(() => {
     if (window.location.href.split("/")[3] === "") {
@@ -29,14 +24,8 @@ export const Header = () => {
     }
   }, []);
   const logOut = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    const data = {
-      access_token: null,
-      refresh_token: null,
-      type: "UNSET",
-    };
-    dispatch(authActions(data));
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
     if (window.location.href.split("/")[3] === "") {
       window.location.reload();
     } else {
@@ -63,13 +52,13 @@ export const Header = () => {
               <Button href="/sign-up" className="signup-header-button">
                 Sign Up
               </Button>{" "}
-              <Cart />
             </>
           ) : (
             <>
               <Button onClick={logOut} className="logout-header-button">
                 Log Out
               </Button>
+              <Cart />
             </>
           )}
         </div>
