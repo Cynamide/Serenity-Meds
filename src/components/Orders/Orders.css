@@ -1,0 +1,71 @@
+.faq-content {
+  height: 80vh;
+}
+
+.faq-text {
+  font-size: 18px;
+}
+
+.faq-title {
+  font-size: 28px;
+  float: left;
+  margin-left: 3%;
+}
+
+.arrow {
+  font-size: 32px;
+  float: left;
+  margin-top: 0.5%;
+}
+
+.top-row {
+  margin-top: 4%;
+}
+
+@media screen and (max-width: 992px) {
+  .faq-text {
+    font-size: 14px;
+  }
+  .faq-title {
+    font-size: 24px !important;
+    float: unset;
+    margin-left: 0%;
+    margin-right: 5% !important;
+    text-align: center;
+  }
+  .arrow {
+    font-size: 24px;
+    float: left;
+    margin-top: 0.5%;
+  }
+  .top-row {
+    margin-top: 7%;
+  }
+}
+
+.panel {
+  border: 1px solid #f2f2f2;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-top: 2%;
+}
+@media screen and (max-width: 650px) {
+  .faq-content {
+    height: 135vh;
+  }
+  .faq-text {
+    font-size: 14px;
+  }
+  .faq-title {
+    font-size: 16px !important;
+  }
+  .arrow {
+    font-size: 18px;
+    float: left;
+    margin-top: 0.5%;
+  }
+  .top-row {
+    margin-top: 12%;
+  }
+}

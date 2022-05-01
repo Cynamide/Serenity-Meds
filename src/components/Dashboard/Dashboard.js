@@ -11,6 +11,7 @@ const { Title, Paragraph } = Typography;
 
 export const Dashboard = () => {
   const [dataBoard, setDataBoard] = useState([]);
+  const [loading, setLoading] = useState(true);
   // eslint-disable-next-line
   const auth = useSelector((data) => authStateReducer(data));
   // eslint-disable-next-line
@@ -66,6 +67,7 @@ export const Dashboard = () => {
       .post(`${process.env.REACT_APP_BACKEND_URL}/product/`, data, config)
       .then((res) => {
         setDataBoard(res.data);
+        setLoading(false);
         console.log(res.data);
       })
       .catch((err) => {
@@ -138,6 +140,7 @@ export const Dashboard = () => {
                     xl: 2,
                     xxl: 3,
                   }}
+                  loading={loading}
                   dataSource={dataBoard.product_list}
                   renderItem={(resource) => (
                     <List.Item>

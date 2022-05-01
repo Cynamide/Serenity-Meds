@@ -6,6 +6,7 @@ import { LoginPage } from "../../pages/LoginPage";
 import { PaymentSuccessPage } from "../../pages/PaymentSuccessPage";
 import { MedComponentPage } from "../../pages/MedComponentPage";
 import { MedSearchPage } from "../../pages/MedSearchPage";
+import { OdersPage } from "../../pages/OrdersPage";
 export const Main = () => {
   return (
     <Switch>
@@ -17,6 +18,7 @@ export const Main = () => {
       <Route exact path="/medicine" component={MedComponentPage} />
       <Route exact path="/list" component={MedSearchPage} />
       <Route exact path="/search" component={MedSearchPage} />
+      <Route exact path="/orders" component={OdersPage} />
     </Switch>
   );
 };

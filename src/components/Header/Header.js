@@ -23,6 +23,11 @@ export const Header = () => {
       setNav(window.location.href.split("/")[3]);
     }
   }, []);
+
+  const redirectToOrders = () => {
+    history.push("/orders");
+  };
+
   const logOut = () => {
     localStorage.removeItem("access-token");
     localStorage.removeItem("refresh-token");
@@ -57,6 +62,12 @@ export const Header = () => {
             <>
               <Button onClick={logOut} className="logout-header-button">
                 Log Out
+              </Button>
+              <Button
+                onClick={redirectToOrders}
+                className="logout-header-button"
+              >
+                Your Orders
               </Button>
               <Cart />
             </>

@@ -137,7 +137,7 @@ function Cart() {
       config.headers.Authorization = `Bearer ${token}`;
     }
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/checkout/`, config)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/order/checkout/`, config)
       .then((res) => {
         setVisible(true);
       })

@@ -5,9 +5,10 @@ import {
   Typography,
   // Button,
   // Input,
+  Button,
+  notification,
   Card,
   Popover,
-  Button,
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -38,6 +39,40 @@ export const MedComponent = () => {
   const [med, setMed] = useState(null);
   const [qty, setQty] = useState(0);
 
+  const redirectToLogin = () => {
+    history.push("/login");
+  };
+
+  const addMedNotif = (type) => {
+    if (qty > 0) {
+      notification[type]({
+        message: `Success`,
+        description: `${med.name} added to cart. Total quantity: ${qty + 1}`,
+      });
+    } else {
+      notification[type]({
+        message: `Success`,
+        description: `${med.name} added to cart`,
+      });
+    }
+  };
+  useEffect(() => {
+    console.log(qty);
+  }, [qty]);
+  const subMedNotif = (type) => {
+    notification[type]({
+      message: `Success`,
+      description: `1 ${med.name} removed from cart. Total quantity: ${qty}`,
+    });
+  };
+
+  const removeMedNotif = (type) => {
+    notification[type]({
+      message: `Success`,
+      description: `${med.name} removed from cart`,
+    });
+  };
+
   const onAddMed = () => {
     const id = queryString.parse(history.location.search).id;
     const token = localStorage.getItem("access-token");
@@ -58,6 +93,7 @@ export const MedComponent = () => {
       .then((res) => {
         setQty(res.data.quantity);
         console.log(res.data);
+        addMedNotif("success");
       })
       .catch((err) => {
         console.log(err.data);
@@ -82,6 +118,7 @@ export const MedComponent = () => {
       )
       .then((res) => {
         setQty(res.data.quantity);
+        removeMedNotif("success");
         console.log(res.data);
       })
       .catch((err) => {
@@ -108,6 +145,7 @@ export const MedComponent = () => {
       )
       .then((res) => {
         setQty(res.data.quantity);
+        subMedNotif("success");
         console.log(res.data);
       })
       .catch((err) => {
@@ -150,6 +188,12 @@ export const MedComponent = () => {
   const notInCartAction = [
     <Button onClick={onAddMed} className="signup-header-button">
       Add to Cart
+    </Button>,
+  ];
+
+  const logInCartAction = [
+    <Button onClick={redirectToLogin} className="signup-header-button">
+      Log In to add to cart
     </Button>,
   ];
 
@@ -197,7 +241,13 @@ export const MedComponent = () => {
                 {med && (
                   <Card
                     className="card"
-                    actions={qty > 0 ? inCartAction : notInCartAction}
+                    actions={
+                      localStorage.getItem("access-token")
+                        ? qty > 0
+                          ? inCartAction
+                          : notInCartAction
+                        : logInCartAction
+                    }
                   >
                     <div className="card-container">
                       <img

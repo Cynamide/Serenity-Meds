@@ -28,6 +28,7 @@ export const SignUp = () => {
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const onChangeName = (e) => {
     setName(e.target.value);
   };
